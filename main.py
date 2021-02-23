@@ -17,7 +17,7 @@ def check_mentions(api, since_id):
   for tweet in tweepy.Cursor(api.mentions_timeline, since_id=since_id).items():
     new_since_id = max(tweet.id, new_since_id)
     logger.info(f"answerng to {tweet.user.name}")
-    api.update_status(status=get_phrase(api), in_reply_to_status_id=tweet.id)
+    api.update_status(status=get_phrase(api), in_reply_to_status_id=tweet.id, auto_populate_reply_metadata=True)
     time.sleep(5)
   return new_since_id
 
