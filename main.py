@@ -18,7 +18,7 @@ def check_mentions(api, since_id):
     new_since_id = max(tweet.id, new_since_id)
     logger.info(f"answerng to {tweet.user.name}")
     api.update_status(status=get_phrase(api), in_reply_to_status_id=tweet.id, auto_populate_reply_metadata=True)
-    time.sleep(5)
+    time.sleep(3)
   return new_since_id
 
 def get_phrase(api):
@@ -35,6 +35,6 @@ def main():
   while True:
     since_id = check_mentions(api, since_id)
     logger.info("Waiting...")
-    time.sleep(60*4)
+    time.sleep(60)
 
 main()
